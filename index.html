@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Cover 97 - Barbería Premium. Cortes, barba y estilo urbano. Reserva tu cita online.">
+    <meta name="theme-color" content="#d4af37">
+    
+    <title>Cover 97 | Eleva tu Estilo</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        /* =========================================
+           1. IDENTIDAD VISUAL
+           ========================================= */
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f5c542;
+            --black: #0f0f0f;
+            --dark-gray: #1a1a1a;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            
+            --font-title: 'Oswald', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+            
+            --shadow: 0 10px 30px rgba(0,0,0,0.5);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: var(--black);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--black); }
+        ::-webkit-scrollbar-thumb { background: var(--dark-gray); border-radius: 4px; }
+
+        /* =========================================
+           2. COMPONENTES UI
+           ========================================= */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 12px 35px; border-radius: 4px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; border: none; transition: var(--transition);
+            font-family: var(--font-title); font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            color: var(--black);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
+        .btn-primary:disabled { background: #555; color: #aaa; cursor: not-allowed; box-shadow: none; }
+
+        .section-title {
+            font-family: var(--font-title); font-size: 3rem; text-align: center;
+            color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 2px;
+        }
+        .section-subtitle {
+            text-align: center; color: var(--text-muted); margin-bottom: 3rem;
+            font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        /* =========================================
+           3. HEADER
+           ========================================= */
+        header {
+            background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(10px);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+
+        .logo {
+            font-family: var(--font-title); font-size: 1.8rem; color: var(--text-main);
+            font-weight: 700; letter-spacing: 2px;
+        }
+        .logo span { color: var(--gold); }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; position: relative; }
+        .nav-links a:hover { color: var(--gold); }
+
+        .hamburger { display: none; font-size: 1.5rem; color: var(--gold); cursor: pointer; }
+
+        /* =========================================
+           4. HERO SECTION
+           ========================================= */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2074&auto=format&fit=crop'); 
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; padding-top: 80px;
+        }
+
+        .hero-content { max-width: 800px; padding: 20px; animation: fadeInUp 1s ease-out; }
+        .hero-badge {
+            border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px;
+            font-family: var(--font-title); text-transform: uppercase; font-size: 0.9rem;
+            letter-spacing: 3px; display: inline-block; margin-bottom: 20px;
+        }
+        #hero h1 { font-family: var(--font-title); font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; text-transform: uppercase; }
+        #hero h1 span { color: var(--gold); }
+        #hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* =========================================
+           5. LAYOUT: SERVICIOS Y FORMULARIO
+           ========================================= */
+        .booking-section { padding: 100px 0; background: var(--black); position: relative; }
+        
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Móvil: 1 columna */
+            gap: 50px;
+        }
+
+        /* SERVICIOS (Izquierda) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--dark-gray);
+            border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;
+            overflow: hidden; cursor: pointer;
+            transition: var(--transition); position: relative;
+        }
+
+        .check-icon {
+            position: absolute; top: 10px; right: 10px; width: 28px; height: 28px;
+            background: rgba(0,0,0,0.6); border: 2px solid #555; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: transparent;
+            z-index: 5; transition: all 0.2s; font-size: 14px;
+        }
+
+        .service-card.selected { border: 2px solid var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); transform: translateY(-3px); }
+        .service-card.selected .check-icon { background: var(--gold); border-color: var(--gold); color: #000; }
+
+        /* Fotos más grandes */
+        .service-image { height: 220px; width: 100%; overflow: hidden; }
+        .service-image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); opacity: 0.7; }
+        .service-card:hover .service-image img { opacity: 0.9; transform: scale(1.05); }
+        .service-card.selected .service-image img { opacity: 1; transform: scale(1.05); }
+        
+        .service-info { padding: 15px; text-align: center; }
+        .service-name { 
+            font-family: var(--font-title); font-size: 1.2rem; 
+            text-transform: uppercase; margin-bottom: 5px; color: var(--text-main);
+        }
+        .service-price { color: var(--gold); font-weight: 600; font-size: 1.1rem; }
+
+        /* FORMULARIO (Derecha) */
+        .booking-form {
+            background: var(--dark-gray); padding: 40px; border-radius: 10px; 
+            box-shadow: var(--shadow); border: 1px solid rgba(212, 175, 55, 0.1); 
+            position: sticky; top: 100px;
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { 
+            display: block; font-size: 0.8rem; text-transform: uppercase; 
+            letter-spacing: 1px; color: var(--gold); margin-bottom: 8px; font-weight: 600;
+        }
+
+        input {
+            width: 100%; background: transparent; border: none; border-bottom: 1px solid #444;
+            padding: 10px 0; color: var(--text-main); font-family: var(--font-body);
+            font-size: 1rem; outline: none; transition: var(--transition);
+        }
+        input:focus { border-bottom-color: var(--gold); }
+
+        .dropdown { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .dropdown button {
+            background: #111; border: 1px solid #333; color: #ccc;
+            padding: 10px 15px; border-radius: 4px; cursor: pointer; font-size: 0.9rem;
+            transition: var(--transition); flex-grow: 1; text-align: center;
+        }
+        .dropdown button:hover, .dropdown button.active { 
+            border-color: var(--gold); color: var(--gold); background: rgba(212, 175, 55, 0.1); 
+        }
+        .hidden { display: none; }
+
+        /* =========================================
+           6. UBICACIÓN & FOOTER
+           ========================================= */
+        #ubicacion { padding: 100px 0; background: #0a0a0a; }
+        .info-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+        .map-box {
+            height: 350px; background: #222; border-radius: 10px; overflow: hidden;
+            border: 1px solid #333; filter: grayscale(100%) invert(92%) hue-rotate(180deg);
+            transition: var(--transition);
+        }
+        .map-box:hover { filter: none; }
+
+        footer {
+            background: #050505; padding: 50px 0; text-align: center; border-top: 1px solid #111;
+        }
+        .social-icons { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        .social-icons a {
+            width: 40px; height: 40px; border-radius: 50%; background: #111; color: var(--text-main);
+            display: flex; align-items: center; justify-content: center; transition: var(--transition);
+        }
+        .social-icons a:hover { background: var(--gold); color: var(--black); }
+
+        /* =========================================
+           7. BARRA FLOTANTE (UX MÓVIL)
+           ========================================= */
+        .sticky-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: var(--dark-gray); border-top: 2px solid var(--gold);
+            padding: 15px 20px; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+        }
+        .sticky-bar.visible { transform: translateY(0); }
+        .bar-info span { display: block; font-size: 0.75rem; color: #ccc; }
+        .bar-info strong { color: var(--gold); font-size: 1.2rem; font-family: var(--font-title); }
+        .bar-btn {
+            background: var(--gold); color: #000; border: none; padding: 10px 25px;
+            border-radius: 50px; font-weight: 700; cursor: pointer; font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @media(min-width: 992px) { /* PC - 2 Columnas */
+            .layout-grid { grid-template-columns: 1.2fr 0.8fr; align-items: start; }
+            #hero h1 { font-size: 6rem; }
+            .info-grid { grid-template-columns: 1fr 1fr; }
+            .hamburger { display: none; }
+            .section-title.left { text-align: left; }
+            .section-subtitle.left { text-align: left; }
+        }
+        
+        @media(max-width: 991px) { /* Móvil / Tablet */
+            .nav-links { display: none; position: absolute; top: 80px; background: var(--black); flex-direction: column; width: 100%; padding: 20px; text-align: center; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            #hero h1 { font-size: 3.5rem; }
+            .service-image { height: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">COVER<span>97</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" onclick="toggleMenu()">Inicio</a></li>
+                <li><a href="#reserva" onclick="toggleMenu()">Servicios</a></li>
+                <li><a href="#formulario-reserva" onclick="toggleMenu()">Reservar</a></li>
+                <li><a href="#ubicacion" onclick="toggleMenu()">Ubicación</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <span class="hero-badge">Estilo Urbano & Premium</span>
+            <h1>Eleva tu <br><span>Estilo</span></h1>
+            <p>Más que un corte, una experiencia. Profesionales dedicados a perfeccionar tu imagen.</p>
+            <a href="#reserva" class="btn btn-primary">Empezar <i class="fa-solid fa-arrow-down" style="margin-left:8px"></i></a>
+        </div>
+    </section>
+
+    <section id="reserva" class="booking-section">
+        <div class="container layout-grid">
+            
+            <div class="services-column">
+                <h2 class="section-title left" style="font-size: 2.5rem;">Nuestros Servicios</h2>
+                <p class="section-subtitle left" style="margin-bottom: 2rem;">Toca para seleccionar uno o más servicios</p>
+                
+                <div class="services-grid">
+                    <div class="service-card" onclick="toggleService(this, 'Corte', 25)">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1593702295094-aea8c5c13d7b?w=500" alt="Corte"></div>
+                        <div class="service-info">
+                            <p class="service-name">Corte</p>
+                            <span class="service-price">S/ 25</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService(this, 'Barba', 15)">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=500" alt="Barba"></div>
+                        <div class="service-info">
+                            <p class="service-name">Barba</p>
+                            <span class="service-price">S/ 15</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService(this, 'Tinte', 40)">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=500" alt="Tinte"></div>
+                        <div class="service-info">
+                            <p class="service-name">Tinte</p>
+                            <span class="service-price">S/ 40</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService(this, 'Piercing', 25)">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1606909477669-02686866f874?w=500" alt="Piercing"></div>
+                        <div class="service-info">
+                            <p class="service-name">Piercing</p>
+                            <span class="service-price">S/ 25</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService(this, 'Tatto', 15)">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1590246261545-d814d422a592?w=500" alt="Tatto"></div>
+                        <div class="service-info">
+                            <p class="service-name">Tatto</p>
+                            <span class="service-price">S/ 15</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" onclick="toggleService(this, 'Ondulación', 40)">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1599351431202-6e0c06e7d25a?w=500" alt="Ondulación"></div>
+                        <div class="service-info">
+                            <p class="service-name">Ondulación</p>
+                            <span class="service-price">S/ 40</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-column" id="formulario-reserva">
+                <form class="booking-form">
+                    <h2 class="section-title left" style="font-size: 2rem; margin-bottom: 20px;">Agenda tu Cita</h2>
+                    
+                    <div class="form-group">
+                        <label for="day"><i class="fa-regular fa-calendar"></i> Día</label>
+                        <input type="text" id="day" placeholder="Selecciona fecha..." readonly />
+                        <div id="days-list" class="dropdown hidden"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time"><i class="fa-regular fa-clock"></i> Hora</label>
+                        <input type="text" id="time" placeholder="Selecciona hora..." readonly />
+                        <div id="hours-list" class="dropdown hidden"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name"><i class="fa-regular fa-user"></i> Nombre</label>
+                        <input type="text" id="name" placeholder="Tu nombre completo" autocomplete="off" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</label>
+                        <input type="tel" id="whatsapp" placeholder="999 999 999" autocomplete="off" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><i class="fa-regular fa-envelope"></i> Correo Electrónico</label>
+                        <input type="email" id="email" placeholder="Para tu recordatorio automático" autocomplete="off" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
+                        Confirmar Reserva
+                    </button>
+                </form>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="ubicacion">
+        <div class="container">
+            <div class="info-grid">
+                <div class="location-info">
+                    <h2 class="section-title" style="text-align: left;">Visítanos</h2>
+                    <p style="font-size: 1.1rem; color: #fff;">La mejor experiencia de barbería.</p>
+                    <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
+                    <p><strong>Dirección:</strong> Av. Principal 123, Lima</p>
+                    <p><strong>Horario:</strong> Lunes a Sábado, 10am - 10pm</p>
+                    <p><strong>Contacto:</strong> 989 435 125</p>
+                    <div style="margin-top: 30px;">
+                        <a href="https://wa.me/51989435125" class="btn btn-primary" target="_blank"><i class="fa-brands fa-whatsapp"></i> Contactar</a>
+                    </div>
+                </div>
+                <div class="map-box">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.996160166068!2d-77.04279308561816!3d-12.04637309146747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8b6680630f9%3A0x6294a9741f237302!2sLima!5e0!3m2!1ses!2spe!4v1645000000000!5m2!1ses!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2 class="logo" style="font-size: 1.5rem; margin-bottom: 10px;">COVER<span>97</span></h2>
+            <p style="color: #666; font-size: 0.9rem;">© 2026 Cover 97. Todos los derechos reservados.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sticky-bar" id="sticky-bar">
+        <div class="bar-info">
+            <span id="bar-count">0 servicios</span>
+            <strong id="bar-total">S/ 0</strong>
+        </div>
+        <button class="bar-btn" onclick="scrollToBooking()">
+            RESERVAR <i class="fa-solid fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <script>
+        // === 1. CONFIGURACIÓN INICIAL ===
+        const API_URL = "https://script.google.com/macros/s/AKfycbwCjVaM50sEBG0dT-LiacyqTrli4nio06tgZnW0Lt14YQa7Oxsj6Umh8_axmPz6S4CA/exec";
+        
+        let slots = [];
+        let selectedDay = null;
+        let selectedServices = []; 
+
+        // Configuración de Toasts elegantes (SweetAlert2)
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3500,
+            timerProgressBar: true,
+            background: '#1c1c1c',
+            color: '#fff',
+            iconColor: '#d4af37'
+        });
+
+        const form = document.querySelector(".booking-form");
+        const dayInput = document.getElementById("day");
+        const timeInput = document.getElementById("time");
+        const nameInput = document.getElementById("name");
+        const whatsappInput = document.getElementById("whatsapp");
+        const emailInput = document.getElementById("email");
+        const daysList = document.getElementById("days-list");
+        const hoursList = document.getElementById("hours-list");
+        const btnSubmit = document.querySelector(".booking-form .btn-primary");
+        const stickyBar = document.getElementById("sticky-bar");
+
+        // === 2. INTERFAZ Y NAVEGACIÓN ===
+        function toggleMenu() { 
+            const links = document.getElementById('navLinks');
+            if(window.innerWidth < 992) links.classList.toggle('active'); 
+        }
+
+        window.scrollToBooking = function() {
+            document.getElementById('formulario-reserva').scrollIntoView({behavior: 'smooth', block: 'center'});
+            setTimeout(() => { if(!selectedDay) dayInput.click(); }, 600);
+        }
+
+        // === 3. CARGA DE DATOS (Backend) ===
+        function loadAvailability() {
+            fetch(API_URL)
+                .then(res => res.json())
+                .then(data => { slots = data; })
+                .catch(err => console.error("Error cargando datos:", err));
+        }
+        loadAvailability();
+
+        // === 4. LÓGICA DE SERVICIOS ===
+        window.toggleService = function(card, name, price) {
+            card.classList.toggle('selected');
+            
+            const exists = selectedServices.find(s => s.name === name);
+            if(exists) {
+                selectedServices = selectedServices.filter(s => s.name !== name);
+            } else {
+                selectedServices.push({name, price});
+            }
+            updateStickyBar();
+        }
+
+        function updateStickyBar() {
+            const total = selectedServices.reduce((sum, item) => sum + item.price, 0);
+            const count = selectedServices.length;
+            
+            document.getElementById('bar-count').innerText = `${count} servicio(s)`;
+            document.getElementById('bar-total').innerText = `S/ ${total}`;
+            
+            if(count > 0) stickyBar.classList.add('visible');
+            else stickyBar.classList.remove('visible');
+        }
+
+        // === 5. MANEJO DE FECHAS Y HORAS ===
+        function formatDay(dateStr) {
+            const [day, month, year] = dateStr.split("/");
+            const date = new Date(year, month - 1, day, 12, 0, 0);
+            return date.toLocaleDateString("es-PE", { weekday: "long", day: "numeric", month: "long" });
+        }
+
+        dayInput.addEventListener("click", () => {
+            renderDays();
+            daysList.classList.toggle("hidden");
+            hoursList.classList.add("hidden");
+        });
+
+        function renderDays() {
+            daysList.innerHTML = "";
+            const diasUnicos = [...new Set(slots.map(s => s.fecha))];
+            
+            diasUnicos.sort((a, b) => {
+                const [da, ma, ya] = a.split("/").map(Number);
+                const [db, mb, yb] = b.split("/").map(Number);
+                return new Date(ya, ma - 1, da) - new Date(yb, mb - 1, db);
+            });
+
+            diasUnicos.forEach(day => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                const fechaTexto = formatDay(day);
+                btn.textContent = fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
+                
+                btn.addEventListener("click", () => {
+                    selectedDay = day; 
+                    dayInput.value = btn.textContent;
+                    timeInput.value = "";
+                    daysList.classList.add("hidden");
+                    
+                    setTimeout(() => {
+                        renderHours(selectedDay);
+                        hoursList.classList.remove("hidden");
+                    }, 150);
+                });
+                daysList.appendChild(btn);
+            });
+        }
+
+        timeInput.addEventListener("click", () => {
+            if (!selectedDay) { 
+                Toast.fire({ icon: 'info', title: 'Primero selecciona un día' });
+                return; 
+            }
+            renderHours(selectedDay);
+            hoursList.classList.toggle("hidden");
+        });
+
+        function renderHours(day) {
+            hoursList.innerHTML = "";
+            const availableHours = slots.filter(s => s.fecha === day);
+
+            if (availableHours.length === 0) {
+                hoursList.innerHTML = "<p style='color:#ccc; padding:5px; font-size:0.8rem; width:100%; text-align:center'>Sin horarios libres</p>";
+                return;
+            }
+
+            availableHours.forEach(s => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.textContent = s.hora;
+                btn.addEventListener("click", () => {
+                    timeInput.value = s.hora;
+                    hoursList.classList.add("hidden");
+                    nameInput.focus();
+                });
+                hoursList.appendChild(btn);
+            });
+        }
+
+        // === 6. ENVÍO DEL FORMULARIO ===
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+
+            // Validaciones con Toasts
+            if (selectedServices.length === 0) {
+                Toast.fire({ icon: 'warning', title: 'Selecciona al menos un servicio' });
+                return;
+            }
+            if (!selectedDay || !timeInput.value) { 
+                Toast.fire({ icon: 'warning', title: 'Selecciona día y hora' });
+                return; 
+            }
+            
+            const nombreCliente = nameInput.value.trim();
+            const wspCliente = whatsappInput.value.trim();
+            const correoCliente = emailInput.value.trim();
+
+            if (nombreCliente === "") { 
+                Toast.fire({ icon: 'warning', title: 'Escribe tu nombre' });
+                nameInput.focus(); return; 
+            }
+            if (wspCliente.length < 9) { 
+                Toast.fire({ icon: 'warning', title: 'Ingresa un WhatsApp válido' });
+                whatsappInput.focus(); return; 
+            }
+            if (correoCliente === "" || !correoCliente.includes("@")) {
+                Toast.fire({ icon: 'warning', title: 'Ingresa un correo electrónico válido' });
+                emailInput.focus(); return;
+            }
+
+            // Preparar Datos para el Backend (NUEVO: Monto y Email)
+            const serviciosNames = selectedServices.map(s => s.name).join(", ");
+            const montoTotal = selectedServices.reduce((sum, item) => sum + item.price, 0);
+            
+            const originalBtnText = btnSubmit.innerHTML;
+            btnSubmit.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Procesando...';
+            btnSubmit.disabled = true;
+
+            const payload = {
+                fecha: selectedDay,
+                hora: timeInput.value,
+                nombre: nombreCliente,
+                whatsapp: wspCliente,
+                email: correoCliente,
+                servicios: serviciosNames,
+                monto: montoTotal
+            };
+
+            fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain;charset=utf-8" }, 
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(response => {
+                if (response.status === "success") {
+                    const mensajeWsp = `Hola Cover 97, soy ${nombreCliente}. He reservado el día ${dayInput.value} a las ${timeInput.value}. Servicios: ${serviciosNames}. Total: S/${montoTotal}.`;
+                    const tuNumeroNegocio = "51989435125"; 
+                    const urlWsp = `https://wa.me/${tuNumeroNegocio}?text=${encodeURIComponent(mensajeWsp)}`;
+
+                    window.open(urlWsp, "_blank");
+
+                    Toast.fire({ icon: 'success', title: '¡Reserva Confirmada!' });
+
+                    // Limpieza total
+                    form.reset();
+                    selectedDay = null;
+                    selectedServices = [];
+                    document.querySelectorAll(".service-card").forEach(c => c.classList.remove("selected"));
+                    updateStickyBar();
+                    loadAvailability();
+
+                } else {
+                    Toast.fire({ icon: 'error', title: response.message });
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                Toast.fire({ icon: 'error', title: 'Error de conexión. Intenta nuevamente.' });
+            })
+            .finally(() => {
+                btnSubmit.innerHTML = originalBtnText;
+                btnSubmit.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
