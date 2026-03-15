@@ -73,6 +73,12 @@
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
         .btn-primary:disabled { background: #555; color: #aaa; cursor: not-allowed; box-shadow: none; }
 
+        .btn-outline {
+            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+            padding: 8px 20px; font-size: 0.85rem; width: 100%; margin-top: 10px;
+        }
+        .btn-outline:hover { background: var(--gold); color: var(--black); }
+
         .section-title {
             font-family: var(--font-title); font-size: 3rem; text-align: center;
             color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 2px;
@@ -99,7 +105,7 @@
         }
         .logo span { color: var(--gold); }
 
-        .nav-links { display: flex; gap: 30px; }
+        .nav-links { display: flex; gap: 20px; }
         .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; position: relative; }
         .nav-links a:hover { color: var(--gold); }
 
@@ -134,15 +140,15 @@
         
         .layout-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Móvil: 1 columna */
+            grid-template-columns: 1fr;
             gap: 50px;
         }
 
-        /* SERVICIOS (Izquierda) */
+        /* SERVICIOS */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr); /* FORZA 2 COLUMNAS EN MÓVIL */
+            gap: 15px;
         }
 
         .service-card {
@@ -153,29 +159,29 @@
         }
 
         .check-icon {
-            position: absolute; top: 10px; right: 10px; width: 28px; height: 28px;
+            position: absolute; top: 10px; right: 10px; width: 25px; height: 25px;
             background: rgba(0,0,0,0.6); border: 2px solid #555; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; color: transparent;
-            z-index: 5; transition: all 0.2s; font-size: 14px;
+            z-index: 5; transition: all 0.2s; font-size: 12px;
         }
 
         .service-card.selected { border: 2px solid var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); transform: translateY(-3px); }
         .service-card.selected .check-icon { background: var(--gold); border-color: var(--gold); color: #000; }
 
-        /* Fotos más grandes */
-        .service-image { height: 220px; width: 100%; overflow: hidden; }
+        .service-image { height: 130px; width: 100%; overflow: hidden; } 
         .service-image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); opacity: 0.7; }
         .service-card:hover .service-image img { opacity: 0.9; transform: scale(1.05); }
         .service-card.selected .service-image img { opacity: 1; transform: scale(1.05); }
         
-        .service-info { padding: 15px; text-align: center; }
+        .service-info { padding: 10px; text-align: center; }
         .service-name { 
-            font-family: var(--font-title); font-size: 1.2rem; 
+            font-family: var(--font-title); font-size: 1rem; 
             text-transform: uppercase; margin-bottom: 5px; color: var(--text-main);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        .service-price { color: var(--gold); font-weight: 600; font-size: 1.1rem; }
+        .service-price { color: var(--gold); font-weight: 600; font-size: 1rem; }
 
-        /* FORMULARIO (Derecha) */
+        /* FORMULARIO */
         .booking-form {
             background: var(--dark-gray); padding: 40px; border-radius: 10px; 
             box-shadow: var(--shadow); border: 1px solid rgba(212, 175, 55, 0.1); 
@@ -207,9 +213,46 @@
         .hidden { display: none; }
 
         /* =========================================
-           6. UBICACIÓN & FOOTER
+           6. SECCIÓN TIENDA Y CLIENTES
            ========================================= */
-        #ubicacion { padding: 100px 0; background: #0a0a0a; }
+        #tienda { padding: 80px 0; background: #0a0a0a; border-top: 1px solid #1a1a1a; }
+        
+        .store-category { margin-bottom: 50px; }
+        .store-category-title {
+            font-family: var(--font-title); color: var(--gold); font-size: 1.8rem;
+            text-transform: uppercase; border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px; margin-bottom: 20px; letter-spacing: 1px;
+        }
+
+        .store-card {
+            background: var(--black); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;
+            overflow: hidden; text-align: center; transition: var(--transition);
+            display: flex; flex-direction: column;
+        }
+        .store-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+        .store-img { height: 180px; width: 100%; overflow: hidden; background: #111; }
+        .store-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .store-info { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;}
+        .store-title { font-family: var(--font-title); text-transform: uppercase; font-size: 1.1rem; margin-bottom: 5px; }
+        .store-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px; }
+        .store-price { color: var(--gold); font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
+
+        #clientes { padding: 80px 0; background: var(--dark-gray); }
+        .carousel-container {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            gap: 15px; padding-bottom: 20px; scrollbar-width: none;
+        }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-item {
+            flex: 0 0 85%; scroll-snap-align: center; border-radius: 8px;
+            overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .carousel-item img { width: 100%; height: 350px; object-fit: cover; }
+
+        /* =========================================
+           7. UBICACIÓN & FOOTER
+           ========================================= */
+        #ubicacion { padding: 80px 0; background: #0a0a0a; border-top: 1px solid #1a1a1a;}
         .info-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
         .map-box {
             height: 350px; background: #222; border-radius: 10px; overflow: hidden;
@@ -218,9 +261,7 @@
         }
         .map-box:hover { filter: none; }
 
-        footer {
-            background: #050505; padding: 50px 0; text-align: center; border-top: 1px solid #111;
-        }
+        footer { background: #050505; padding: 50px 0; text-align: center; border-top: 1px solid #111; }
         .social-icons { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
         .social-icons a {
             width: 40px; height: 40px; border-radius: 50%; background: #111; color: var(--text-main);
@@ -229,7 +270,7 @@
         .social-icons a:hover { background: var(--gold); color: var(--black); }
 
         /* =========================================
-           7. BARRA FLOTANTE (UX MÓVIL)
+           8. BARRA FLOTANTE (UX MÓVIL)
            ========================================= */
         .sticky-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
@@ -247,16 +288,28 @@
             border-radius: 50px; font-weight: 700; cursor: pointer; font-size: 0.9rem;
         }
 
-        /* Responsive */
+        /* =========================================
+           9. RESPONSIVE
+           ========================================= */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
-        @media(min-width: 992px) { /* PC - 2 Columnas */
-            .layout-grid { grid-template-columns: 1.2fr 0.8fr; align-items: start; }
+        @media(min-width: 768px) {
+            .services-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            .store-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            .carousel-item { flex: 0 0 35%; }
+            .service-image { height: 180px; }
+        }
+
+        @media(min-width: 992px) { /* PC - Ajuste simétrico */
+            .layout-grid { grid-template-columns: 1fr 1fr; align-items: stretch; }
+            .services-grid { grid-template-columns: repeat(3, 1fr); }
+            .store-grid { grid-template-columns: repeat(4, 1fr); }
             #hero h1 { font-size: 6rem; }
             .info-grid { grid-template-columns: 1fr 1fr; }
             .hamburger { display: none; }
             .section-title.left { text-align: left; }
             .section-subtitle.left { text-align: left; }
+            .carousel-item { flex: 0 0 25%; }
         }
         
         @media(max-width: 991px) { /* Móvil / Tablet */
@@ -264,7 +317,8 @@
             .nav-links.active { display: flex; }
             .hamburger { display: block; }
             #hero h1 { font-size: 3.5rem; }
-            .service-image { height: 180px; }
+            .store-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; } /* Tienda a 2 columnas en móvil */
+            .store-img { height: 120px; }
         }
     </style>
 </head>
@@ -276,7 +330,8 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#hero" onclick="toggleMenu()">Inicio</a></li>
                 <li><a href="#reserva" onclick="toggleMenu()">Servicios</a></li>
-                <li><a href="#formulario-reserva" onclick="toggleMenu()">Reservar</a></li>
+                <li><a href="#tienda" onclick="toggleMenu()">Tienda</a></li>
+                <li><a href="#clientes" onclick="toggleMenu()">Clientes</a></li>
                 <li><a href="#ubicacion" onclick="toggleMenu()">Ubicación</a></li>
             </ul>
             <div class="hamburger" onclick="toggleMenu()">
@@ -298,16 +353,26 @@
         <div class="container layout-grid">
             
             <div class="services-column">
-                <h2 class="section-title left" style="font-size: 2.5rem;">Nuestros Servicios</h2>
+                <h2 class="section-title left" style="font-size: 2.5rem;">Servicios</h2>
                 <p class="section-subtitle left" style="margin-bottom: 2rem;">Toca para seleccionar uno o más servicios</p>
                 
                 <div class="services-grid">
-                    <div class="service-card" onclick="toggleService(this, 'Corte', 25)">
+                    
+                    <div class="service-card" onclick="toggleService(this, 'Clásico', 15)">
                         <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                        <div class="service-image"><img src="https://images.unsplash.com/photo-1593702295094-aea8c5c13d7b?w=500" alt="Corte"></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1622288432450-277d0fce5ed9?w=500" alt="Corte Clásico"></div>
                         <div class="service-info">
-                            <p class="service-name">Corte</p>
-                            <span class="service-price">S/ 25</span>
+                            <p class="service-name">Clásico</p>
+                            <span class="service-price">S/ 15</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card" onclick="toggleService(this, 'Degradado', 20)">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1512496015851-a1dc8bbc46e2?w=500" alt="Corte Degradado"></div>
+                        <div class="service-info">
+                            <p class="service-name">Degradado</p>
+                            <span class="service-price">S/ 20</span>
                         </div>
                     </div>
                     
@@ -319,19 +384,46 @@
                             <span class="service-price">S/ 15</span>
                         </div>
                     </div>
+
+                    <div class="service-card" onclick="toggleService(this, 'Perfilado', 5)">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500" alt="Perfilado"></div>
+                        <div class="service-info">
+                            <p class="service-name">Perfilado</p>
+                            <span class="service-price">S/ 5</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card" onclick="toggleService(this, 'Masc. Facial', 20)">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500" alt="Mascarilla Facial"></div>
+                        <div class="service-info">
+                            <p class="service-name" title="Mascarilla Facial">Masc. Facial</p>
+                            <span class="service-price">S/ 20</span>
+                        </div>
+                    </div>
                     
                     <div class="service-card" onclick="toggleService(this, 'Tinte', 40)">
                         <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                        <div class="service-image"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=500" alt="Tinte"></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=500" alt="Tinte"></div>
                         <div class="service-info">
                             <p class="service-name">Tinte</p>
+                            <span class="service-price">S/ 40</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card" onclick="toggleService(this, 'Ondulación', 40)">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1603570228389-f53835bd84fc?w=500" alt="Ondulación"></div>
+                        <div class="service-info">
+                            <p class="service-name">Ondulación</p>
                             <span class="service-price">S/ 40</span>
                         </div>
                     </div>
                     
                     <div class="service-card" onclick="toggleService(this, 'Piercing', 25)">
                         <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                        <div class="service-image"><img src="https://images.unsplash.com/photo-1606909477669-02686866f874?w=500" alt="Piercing"></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1535696588143-945e1379f1b0?w=500" alt="Piercing"></div>
                         <div class="service-info">
                             <p class="service-name">Piercing</p>
                             <span class="service-price">S/ 25</span>
@@ -340,19 +432,10 @@
                     
                     <div class="service-card" onclick="toggleService(this, 'Tatto', 15)">
                         <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                        <div class="service-image"><img src="https://images.unsplash.com/photo-1590246261545-d814d422a592?w=500" alt="Tatto"></div>
+                        <div class="service-image"><img src="https://images.unsplash.com/photo-1562962230-16e4623d36e6?w=500" alt="Tatto"></div>
                         <div class="service-info">
                             <p class="service-name">Tatto</p>
                             <span class="service-price">S/ 15</span>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card" onclick="toggleService(this, 'Ondulación', 40)">
-                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                        <div class="service-image"><img src="https://images.unsplash.com/photo-1599351431202-6e0c06e7d25a?w=500" alt="Ondulación"></div>
-                        <div class="service-info">
-                            <p class="service-name">Ondulación</p>
-                            <span class="service-price">S/ 40</span>
                         </div>
                     </div>
                 </div>
@@ -395,6 +478,161 @@
                 </form>
             </div>
             
+        </div>
+    </section>
+
+    <section id="tienda">
+        <div class="container">
+            <h2 class="section-title">Cover Shop</h2>
+            <p class="section-subtitle">Productos exclusivos para tu cuidado y estilo</p>
+            
+            <div class="store-category">
+                <h3 class="store-category-title">Vapes</h3>
+                <div class="store-grid">
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1625180556608-f404d4ef79fa?w=500" alt="Vape Ignite"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Vape Ignite 5000</p>
+                                <p class="store-desc">Sabor Sandía y Menta.</p>
+                                <span class="store-price">S/ 45</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Vape%20Ignite%205000%20(S/45)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500" alt="Vape Maskking"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Maskking Pro</p>
+                                <p class="store-desc">Sabor Mango Ice.</p>
+                                <span class="store-price">S/ 35</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Vape%20Maskking%20Pro%20(S/35)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1601369792823-74e5083fc8ec?w=500" alt="Vape Elfbar"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Elfbar BC5000</p>
+                                <p class="store-desc">Sabor Fresa y Kiwi.</p>
+                                <span class="store-price">S/ 55</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Vape%20Elfbar%20BC5000%20(S/55)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="store-category">
+                <h3 class="store-category-title">Geles Fijadores</h3>
+                <div class="store-grid">
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1629367494173-c78a56567877?w=500" alt="Gel Extremo"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Gel Cover Extremo</p>
+                                <p class="store-desc">Fijación nivel 10, acabado húmedo.</p>
+                                <span class="store-price">S/ 20</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Gel%20Cover%20Extremo%20(S/20)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500" alt="Gel Suave"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Gel Barber Style</p>
+                                <p class="store-desc">Ideal para peinados clásicos.</p>
+                                <span class="store-price">S/ 18</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Gel%20Barber%20Style%20(S/18)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="store-category">
+                <h3 class="store-category-title">Ceras & Pomadas</h3>
+                <div class="store-grid">
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=500" alt="Cera Mate"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Cera Mate Premium</p>
+                                <p class="store-desc">Acabado natural sin brillo.</p>
+                                <span class="store-price">S/ 25</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20la%20Cera%20Mate%20Premium%20(S/25)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1608248593842-80b182ba63f3?w=500" alt="Cera en Polvo"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Polvo Texturizador</p>
+                                <p class="store-desc">Máximo volumen al instante.</p>
+                                <span class="store-price">S/ 30</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Polvo%20Texturizador%20(S/30)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="store-category" style="margin-bottom: 0;">
+                <h3 class="store-category-title">Accesorios</h3>
+                <div class="store-grid">
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1582239462217-0c7f1a30f38b?w=500" alt="Peine Textura"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Peine de Textura</p>
+                                <p class="store-desc">Púas anchas para el peinado perfecto.</p>
+                                <span class="store-price">S/ 10</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Peine%20de%20Textura%20(S/10)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=500" alt="Cepillo Fade"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Cepillo para Barba</p>
+                                <p class="store-desc">Cerdas suaves para desenredar.</p>
+                                <span class="store-price">S/ 15</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Cepillo%20para%20Barba%20(S/15)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clientes">
+        <div class="container">
+            <h2 class="section-title">Nuestros Clientes</h2>
+            <p class="section-subtitle">Resultados que hablan por sí solos</p>
+            
+            <div class="carousel-container">
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=500" alt="Trabajo 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500" alt="Trabajo 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500" alt="Trabajo 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=500" alt="Trabajo 4">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1532715088550-62f09305f765?w=500" alt="Trabajo 5">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -595,7 +833,6 @@
         form.addEventListener("submit", e => {
             e.preventDefault();
 
-            // Validaciones con Toasts
             if (selectedServices.length === 0) {
                 Toast.fire({ icon: 'warning', title: 'Selecciona al menos un servicio' });
                 return;
@@ -622,7 +859,6 @@
                 emailInput.focus(); return;
             }
 
-            // Preparar Datos para el Backend (NUEVO: Monto y Email)
             const serviciosNames = selectedServices.map(s => s.name).join(", ");
             const montoTotal = selectedServices.reduce((sum, item) => sum + item.price, 0);
             
@@ -656,7 +892,6 @@
 
                     Toast.fire({ icon: 'success', title: '¡Reserva Confirmada!' });
 
-                    // Limpieza total
                     form.reset();
                     selectedDay = null;
                     selectedServices = [];
