@@ -42,7 +42,7 @@
             font-family: var(--font-body);
             line-height: 1.6;
             overflow-x: hidden;
-            padding-bottom: 80px;
+            padding-bottom: 100px; /* Espacio extra para el sticky bar */
         }
 
         a { text-decoration: none; color: inherit; transition: var(--transition); }
@@ -75,12 +75,12 @@
 
         .btn-outline {
             background: transparent; border: 1px solid var(--gold); color: var(--gold);
-            padding: 8px 20px; font-size: 0.85rem; width: 100%; margin-top: 10px;
+            padding: 8px 10px; font-size: 0.8rem; width: 100%; margin-top: 10px; border-radius: 4px;
         }
         .btn-outline:hover { background: var(--gold); color: var(--black); }
 
         .section-title {
-            font-family: var(--font-title); font-size: 3rem; text-align: center;
+            font-family: var(--font-title); font-size: 2.5rem; text-align: center;
             color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 2px;
         }
         .section-subtitle {
@@ -127,16 +127,16 @@
         .hero-badge {
             border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px;
             font-family: var(--font-title); text-transform: uppercase; font-size: 0.9rem;
-            letter-spacing: 3px; display: inline-block; margin-bottom: 20px;
+            letter-spacing: 3px; display: inline-block; margin-bottom: 20px; border-radius: 4px;
         }
-        #hero h1 { font-family: var(--font-title); font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; text-transform: uppercase; }
+        #hero h1 { font-family: var(--font-title); font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; text-transform: uppercase; }
         #hero h1 span { color: var(--gold); }
-        #hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        #hero p { font-size: 1.1rem; color: #ccc; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
         /* =========================================
            5. LAYOUT: SERVICIOS Y FORMULARIO
            ========================================= */
-        .booking-section { padding: 100px 0; background: var(--black); position: relative; }
+        .booking-section { padding: 80px 0; background: var(--black); position: relative; }
         
         .layout-grid {
             display: grid;
@@ -147,8 +147,8 @@
         /* SERVICIOS */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* FORZA 2 COLUMNAS EN MÓVIL */
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr); /* 2 COLUMNAS EN MÓVIL POR DEFECTO */
+            gap: 12px;
         }
 
         .service-card {
@@ -159,31 +159,31 @@
         }
 
         .check-icon {
-            position: absolute; top: 10px; right: 10px; width: 25px; height: 25px;
+            position: absolute; top: 10px; right: 10px; width: 22px; height: 22px;
             background: rgba(0,0,0,0.6); border: 2px solid #555; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; color: transparent;
-            z-index: 5; transition: all 0.2s; font-size: 12px;
+            z-index: 5; transition: all 0.2s; font-size: 10px;
         }
 
         .service-card.selected { border: 2px solid var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); transform: translateY(-3px); }
         .service-card.selected .check-icon { background: var(--gold); border-color: var(--gold); color: #000; }
 
-        .service-image { height: 130px; width: 100%; overflow: hidden; } 
+        .service-image { height: 110px; width: 100%; overflow: hidden; } 
         .service-image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); opacity: 0.7; }
         .service-card:hover .service-image img { opacity: 0.9; transform: scale(1.05); }
         .service-card.selected .service-image img { opacity: 1; transform: scale(1.05); }
         
         .service-info { padding: 10px; text-align: center; }
         .service-name { 
-            font-family: var(--font-title); font-size: 1rem; 
-            text-transform: uppercase; margin-bottom: 5px; color: var(--text-main);
+            font-family: var(--font-title); font-size: 0.95rem; 
+            text-transform: uppercase; margin-bottom: 2px; color: var(--text-main);
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         .service-price { color: var(--gold); font-weight: 600; font-size: 1rem; }
 
         /* FORMULARIO */
         .booking-form {
-            background: var(--dark-gray); padding: 40px; border-radius: 10px; 
+            background: var(--dark-gray); padding: 30px; border-radius: 10px; 
             box-shadow: var(--shadow); border: 1px solid rgba(212, 175, 55, 0.1); 
             position: sticky; top: 100px;
         }
@@ -204,7 +204,7 @@
         .dropdown { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
         .dropdown button {
             background: #111; border: 1px solid #333; color: #ccc;
-            padding: 10px 15px; border-radius: 4px; cursor: pointer; font-size: 0.9rem;
+            padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 0.85rem;
             transition: var(--transition); flex-grow: 1; text-align: center;
         }
         .dropdown button:hover, .dropdown button.active { 
@@ -217,11 +217,18 @@
            ========================================= */
         #tienda { padding: 80px 0; background: #0a0a0a; border-top: 1px solid #1a1a1a; }
         
-        .store-category { margin-bottom: 50px; }
+        .store-category { margin-bottom: 40px; }
         .store-category-title {
-            font-family: var(--font-title); color: var(--gold); font-size: 1.8rem;
+            font-family: var(--font-title); color: var(--gold); font-size: 1.5rem;
             text-transform: uppercase; border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            padding-bottom: 10px; margin-bottom: 20px; letter-spacing: 1px;
+            padding-bottom: 8px; margin-bottom: 15px; letter-spacing: 1px;
+        }
+
+        /* CONFIGURACIÓN BASE GRID PARA TIENDA (MÓVIL = 2 COLUMNAS) */
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
         }
 
         .store-card {
@@ -230,12 +237,12 @@
             display: flex; flex-direction: column;
         }
         .store-card:hover { transform: translateY(-5px); border-color: var(--gold); }
-        .store-img { height: 180px; width: 100%; overflow: hidden; background: #111; }
+        .store-img { height: 130px; width: 100%; overflow: hidden; background: #111; }
         .store-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        .store-info { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;}
-        .store-title { font-family: var(--font-title); text-transform: uppercase; font-size: 1.1rem; margin-bottom: 5px; }
-        .store-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px; }
-        .store-price { color: var(--gold); font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
+        .store-info { padding: 10px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;}
+        .store-title { font-family: var(--font-title); text-transform: uppercase; font-size: 0.9rem; margin-bottom: 3px; }
+        .store-desc { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 5px; line-height: 1.3;}
+        .store-price { color: var(--gold); font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
 
         #clientes { padding: 80px 0; background: var(--dark-gray); }
         .carousel-container {
@@ -289,36 +296,43 @@
         }
 
         /* =========================================
-           9. RESPONSIVE
+           9. RESPONSIVE (Tablets y PC)
            ========================================= */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
         @media(min-width: 768px) {
             .services-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            .service-image { height: 150px; }
+            .service-name { font-size: 1.1rem; }
+            
             .store-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-            .carousel-item { flex: 0 0 35%; }
-            .service-image { height: 180px; }
+            .store-img { height: 180px; }
+            .store-info { padding: 15px; }
+            .store-title { font-size: 1.1rem; }
+            .store-desc { font-size: 0.85rem; }
+            .btn-outline { font-size: 0.9rem; padding: 10px; }
+
+            .carousel-item { flex: 0 0 40%; }
+            .section-title { font-size: 3rem; }
         }
 
-        @media(min-width: 992px) { /* PC - Ajuste simétrico */
+        @media(min-width: 992px) { 
             .layout-grid { grid-template-columns: 1fr 1fr; align-items: stretch; }
             .services-grid { grid-template-columns: repeat(3, 1fr); }
             .store-grid { grid-template-columns: repeat(4, 1fr); }
-            #hero h1 { font-size: 6rem; }
+            #hero h1 { font-size: 5rem; }
             .info-grid { grid-template-columns: 1fr 1fr; }
             .hamburger { display: none; }
             .section-title.left { text-align: left; }
             .section-subtitle.left { text-align: left; }
             .carousel-item { flex: 0 0 25%; }
+            .booking-form { padding: 40px; }
         }
         
-        @media(max-width: 991px) { /* Móvil / Tablet */
-            .nav-links { display: none; position: absolute; top: 80px; background: var(--black); flex-direction: column; width: 100%; padding: 20px; text-align: center; }
+        @media(max-width: 991px) { 
+            .nav-links { display: none; position: absolute; top: 80px; background: var(--black); flex-direction: column; width: 100%; padding: 20px; text-align: center; border-bottom: 1px solid #333;}
             .nav-links.active { display: flex; }
             .hamburger { display: block; }
-            #hero h1 { font-size: 3.5rem; }
-            .store-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; } /* Tienda a 2 columnas en móvil */
-            .store-img { height: 120px; }
         }
     </style>
 </head>
@@ -345,7 +359,7 @@
             <span class="hero-badge">Estilo Urbano & Premium</span>
             <h1>Eleva tu <br><span>Estilo</span></h1>
             <p>Más que un corte, una experiencia. Profesionales dedicados a perfeccionar tu imagen.</p>
-            <a href="#reserva" class="btn btn-primary">Empezar <i class="fa-solid fa-arrow-down" style="margin-left:8px"></i></a>
+            <a href="#reserva" class="btn btn-primary">Reservar Cita <i class="fa-solid fa-arrow-down" style="margin-left:8px"></i></a>
         </div>
     </section>
 
@@ -353,7 +367,7 @@
         <div class="container layout-grid">
             
             <div class="services-column">
-                <h2 class="section-title left" style="font-size: 2.5rem;">Servicios</h2>
+                <h2 class="section-title left">Servicios</h2>
                 <p class="section-subtitle left" style="margin-bottom: 2rem;">Toca para seleccionar uno o más servicios</p>
                 
                 <div class="services-grid">
@@ -487,13 +501,41 @@
             <p class="section-subtitle">Productos exclusivos para tu cuidado y estilo</p>
             
             <div class="store-category">
+                <h3 class="store-category-title">Cuidado & Crecimiento</h3>
+                <div class="store-grid">
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500" alt="Minoxidil Kirkland"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Minoxidil 5%</p>
+                                <p class="store-desc">Estimula crecimiento de barba y cabello.</p>
+                                <span class="store-price">S/ 45</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Minoxidil%205%25%20(S/45)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1621607512022-6aecc4fed814?w=500" alt="Aceite para Barba"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Aceite Premium</p>
+                                <p class="store-desc">Hidrata y da brillo a tu barba.</p>
+                                <span class="store-price">S/ 35</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Aceite%20Premium%20(S/35)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="store-category">
                 <h3 class="store-category-title">Vapes</h3>
                 <div class="store-grid">
                     <div class="store-card">
                         <div class="store-img"><img src="https://images.unsplash.com/photo-1625180556608-f404d4ef79fa?w=500" alt="Vape Ignite"></div>
                         <div class="store-info">
                             <div>
-                                <p class="store-title">Vape Ignite 5000</p>
+                                <p class="store-title">Ignite 5000</p>
                                 <p class="store-desc">Sabor Sandía y Menta.</p>
                                 <span class="store-price">S/ 45</span>
                             </div>
@@ -522,11 +564,22 @@
                             <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Vape%20Elfbar%20BC5000%20(S/55)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
                         </div>
                     </div>
+                    <div class="store-card">
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1628131349887-25e173099955?w=500" alt="Waka 10000"></div>
+                        <div class="store-info">
+                            <div>
+                                <p class="store-title">Waka 10000</p>
+                                <p class="store-desc">Extra duración. Mora azul.</p>
+                                <span class="store-price">S/ 65</span>
+                            </div>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Waka%2010000%20(S/65)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="store-category">
-                <h3 class="store-category-title">Geles Fijadores</h3>
+                <h3 class="store-category-title">Styling (Geles & Ceras)</h3>
                 <div class="store-grid">
                     <div class="store-card">
                         <div class="store-img"><img src="https://images.unsplash.com/photo-1629367494173-c78a56567877?w=500" alt="Gel Extremo"></div>
@@ -540,22 +593,16 @@
                         </div>
                     </div>
                     <div class="store-card">
-                        <div class="store-img"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500" alt="Gel Suave"></div>
+                        <div class="store-img"><img src="https://images.unsplash.com/photo-1585232004423-244e0e6904e3?w=500" alt="Pomada Base Agua"></div>
                         <div class="store-info">
                             <div>
-                                <p class="store-title">Gel Barber Style</p>
-                                <p class="store-desc">Ideal para peinados clásicos.</p>
-                                <span class="store-price">S/ 18</span>
+                                <p class="store-title">Pomada Base Agua</p>
+                                <p class="store-desc">Brillo medio, fácil de lavar.</p>
+                                <span class="store-price">S/ 28</span>
                             </div>
-                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20el%20Gel%20Barber%20Style%20(S/18)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                            <a href="https://wa.me/51989435125?text=Hola%20Cover%2097,%20deseo%20comprar%20la%20Pomada%20Base%20Agua%20(S/28)." target="_blank" class="btn-outline"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="store-category">
-                <h3 class="store-category-title">Ceras & Pomadas</h3>
-                <div class="store-grid">
                     <div class="store-card">
                         <div class="store-img"><img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=500" alt="Cera Mate"></div>
                         <div class="store-info">
